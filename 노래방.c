@@ -4,7 +4,7 @@ typedef int ELEMENT ;
 typedef char CHARACTER ;
 typedef struct song{
 	int Snum;
-	char Sname;
+	char Sname[20];
 }Song;
 typedef struct queue{
 //	ELEMENT * buf;
@@ -37,7 +37,7 @@ int main() {
 		switch(num){
 			case 1:
 				scanf("%d",&(song->Snum));
-				scanf("%d",&(song->Sname));
+				scanf("%s",(song->Sname));
 				enQueue(q,song->Snum,song->Sname);
 			 	break;
 			default:
