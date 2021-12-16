@@ -10,7 +10,7 @@ typedef struct queue{
 //	ELEMENT * buf;
 	ELEMENT * num;
 	CHARACTER * name;
-	QUEUE * link;
+//	queue * link;
 	int front;
 	int rear;
 	int size;
@@ -25,9 +25,9 @@ void printAll( QUEUE *q );
 int main() {
 	QUEUE *q;
 //	ELEMENT data;
-	q = createQueue( 2 );
+	q = createQueue( 1 );
 	Song* song = (Song *)malloc(sizeof(song));
- 
+ 	char a[20];
 	int num; 
 	while(1){
 		printf("--------------------------------------------------------------------\n");
@@ -40,7 +40,6 @@ int main() {
 				scanf("%d",&(song->Snum));
 				printf("\n노래 제목을 입력하세요 :");
 				scanf("%s",(song->Sname));
-//				gets(song->Sname);
 				enQueue(q,song->Snum,song->Sname);
 				if(isEmpty(q)>=1){
 					printf("%s이(가) 예약이 되었습니다.\n",song->Sname);
@@ -48,7 +47,10 @@ int main() {
 				
 			 	break;
 			case 2: 
-				return 0;
+				deQueue(q);
+				if(isFull(q)>=1){
+					printf("%s이(가) 시작됩니다.\n",a);
+				}
 				break;
 			case 3:
 				printAll(q);
@@ -104,12 +106,12 @@ int isEmpty( QUEUE *q ){
 }
 ELEMENT deQueue( QUEUE *q ){
 	if(isEmpty(q)==1){
-		printf("Queue is empty\n");
+		printf("예약된 곡이 없습니다.\n");
 		return 0;
 	}
   else{
 		q->front++;
-		return q->num[q->front];
+		return q->name[q->front]&&q->num[q->front];
 	}
 }
 void printAll( QUEUE *q ){
